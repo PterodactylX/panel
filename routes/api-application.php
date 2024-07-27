@@ -224,4 +224,7 @@ Route::group(['prefix' => '/users'], function () {
 Route::group(['prefix' => '/settings'], function () {
     Route::get('/general', [Application\Settings\GeneralSettingsController::class, 'index']);
     Route::patch('/general', [Application\Settings\GeneralSettingsController::class, 'update']);
+    Route::get('/mail', [Application\Settings\MailSettingsController::class, 'index']);
+    Route::patch('/mail', [Application\Settings\MailSettingsController::class, 'update']);
+    Route::post('/mail/test', [Application\Settings\MailSettingsController::class, 'test']);
 });
