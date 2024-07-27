@@ -94,8 +94,7 @@ export default {
         },
     },
     plugins: [
-        require('tailwindcss-animate'),
-        require('@tailwindcss/line-clamp')
+        require('tailwindcss-animate')
     ],
     borderRadius: {
         lg: 'var(--radius)',
