@@ -3,14 +3,13 @@
 namespace Pterodactyl\Http\Requests\Api\Application\Settings;
 
 use Pterodactyl\Http\Requests\Api\Application\ApplicationApiRequest;
-use Pterodactyl\Traits\Helpers\AvailableLanguages;
 
 class GeneralSettingsFormRequest extends ApplicationApiRequest
 {
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:191',
+            'name' => 'required|string|max:20',
             'analytics' => 'nullable|string|max:50',
         ];
     }
