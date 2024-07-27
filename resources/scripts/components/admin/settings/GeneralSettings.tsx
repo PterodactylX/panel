@@ -19,7 +19,7 @@ export default () => {
     const [error, setError] = useState<LaravelError | undefined>(undefined);
 
     const submit = (settings: Settings, { setSubmitting }: FormikHelpers<Settings>) => {
-        clearFlashes('location:create');
+        clearFlashes('settings:general');
         setError(undefined);
 
         updateGeneralSettings({
