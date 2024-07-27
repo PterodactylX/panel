@@ -84,26 +84,30 @@ class SettingsServiceProvider extends ServiceProvider
                 }
             }
 
-            switch (strtolower($value)) {
-                case 'true':
-                case '(true)':
-                    $value = true;
-                    break;
-                case 'false':
-                case '(false)':
-                    $value = false;
-                    break;
-                case 'empty':
-                case '(empty)':
-                    $value = '';
-                    break;
-                case 'null':
-                case '(null)':
-                    $value = null;
-            }
+            $value = $this->normalizeValue($value);
 
             $config->set(str_replace(':', '.', $key), $value);
         }
+    }
+
+    /**
+     * Normalize the value for the configuration file.
+     *
+     * @param $value mixed The value to normalize
+     */
+    protected function normalizeValue(mixed $value): bool|string|null
+    {
+        if (is_string($value)) {
+            return match (strtolower($value)) {
+                'true', '(true)' => true,
+                'false', '(false)' => false,
+                'empty', '(empty)' => '',
+                'null', '(null)' => null,
+                default => $value,
+            };
+        }
+
+        return $value;
     }
 
     public static function getEncryptedKeys(): array
