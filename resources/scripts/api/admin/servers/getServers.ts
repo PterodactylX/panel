@@ -149,7 +149,7 @@ export const rawDataToServer = ({ attributes }: FractalResponseData): Server =>
                 rawDataToServerVariable,
             ),
         },
-    } as Server);
+    }) as Server;
 
 export interface Filters {
     id?: string;

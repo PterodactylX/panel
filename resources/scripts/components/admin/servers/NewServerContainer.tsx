@@ -136,9 +136,7 @@ function InternalForm() {
                     {/* This ensures that no variables are rendered unless the environment has a value for the variable. */}
                     {egg?.relationships.variables
                         ?.filter(v => Object.keys(environment).find(e => e === v.environmentVariable) !== undefined)
-                        .map((v, i) => (
-                            <ServerVariableContainer key={i} variable={v} />
-                        ))}
+                        .map((v, i) => <ServerVariableContainer key={i} variable={v} />)}
                 </div>
 
                 <div className="bg-neutral-700 rounded shadow-md px-4 py-3 col-span-2">
