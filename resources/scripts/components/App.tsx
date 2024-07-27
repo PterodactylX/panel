@@ -2,7 +2,7 @@ import { StoreProvider } from 'easy-peasy';
 import { lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import '@/assets/tailwind.css';
+import '@/assets/globals.css';
 import GlobalStylesheet from '@/assets/css/GlobalStylesheet';
 import AuthenticatedRoute from '@/components/elements/AuthenticatedRoute';
 import ProgressBar from '@/components/elements/ProgressBar';
