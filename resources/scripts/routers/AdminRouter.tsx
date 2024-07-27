@@ -12,11 +12,9 @@ import {
     ViewGridIcon,
 } from '@heroicons/react/outline';
 import { useStoreState } from 'easy-peasy';
-import { useState } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import tw from 'twin.macro';
 
-import CollapsedIcon from '@/assets/images/pterodactyl.svg';
 import OverviewContainer from '@/components/admin/overview/OverviewContainer';
 import SettingsContainer from '@/components/admin/settings/SettingsContainer';
 import DatabasesContainer from '@/components/admin/databases/DatabasesContainer';
@@ -53,21 +51,13 @@ function AdminRouter() {
     const avatarURL = useStoreState((state: ApplicationStore) => state.user.data!.avatarURL);
     const applicationName = useStoreState((state: ApplicationStore) => state.settings.data!.name);
 
-    // const [collapsed, setCollapsed] = useUserPersistedState('admin_sidebar_collapsed', false);
-    const [collapsed, setCollapsed] = useState<boolean>(false);
-
     return (
         <div css={tw`h-screen flex`}>
-            <Sidebar css={tw`flex-none`} $collapsed={collapsed}>
+            <Sidebar css={tw`flex-none`}>
                 <div
                     css={tw`h-16 w-full flex flex-col items-center justify-center mt-1 mb-3 select-none cursor-pointer`}
-                    onClick={() => setCollapsed(!collapsed)}
                 >
-                    {!collapsed ? (
-                        <h1 css={tw`text-2xl text-neutral-50 whitespace-nowrap font-medium`}>{applicationName}</h1>
-                    ) : (
-                        <img src={CollapsedIcon} css={tw`mt-4 w-20`} alt={'Pterodactyl Icon'} />
-                    )}
+                    <h1 css={tw`text-2xl text-neutral-50 whitespace-nowrap font-medium`}>{applicationName}</h1>
                 </div>
                 <Sidebar.Wrapper>
                     <Sidebar.Section>Administration</Sidebar.Section>
