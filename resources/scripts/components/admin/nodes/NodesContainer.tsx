@@ -169,7 +169,7 @@ const NodesContainer = () => {
                                                 <td css={tw`px-6 text-sm text-neutral-200 text-left whitespace-nowrap`}>
                                                     <NavLink
                                                         to={`/admin/nodes/${node.id}`}
-                                                        css={tw`text-primary-400 hover:text-primary-300`}
+                                                        css={tw`text-zinc-400 hover:text-zinc-300`}
                                                     >
                                                         {node.name}
                                                     </NavLink>
@@ -179,7 +179,7 @@ const NodesContainer = () => {
                                                 <td css={tw`px-6 text-sm text-left whitespace-nowrap`}>
                                                     <NavLink
                                                         to={`/admin/locations/${node.relations.location?.id}`}
-                                                        css={tw`text-primary-400 hover:text-primary-300`}
+                                                        css={tw`text-zinc-400 hover:text-zinc-300`}
                                                     >
                                                         <div css={tw`text-sm text-neutral-200`}>
                                                             {node.relations.location?.short}

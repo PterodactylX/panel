@@ -144,7 +144,7 @@ const NestsContainer = () => {
                                                 <td css={tw`px-6 text-sm text-neutral-200 text-left whitespace-nowrap`}>
                                                     <NavLink
                                                         to={`/admin/nests/${nest.id}`}
-                                                        css={tw`text-primary-400 hover:text-primary-300`}
+                                                        css={tw`text-zinc-200 hover:text-zinc-300`}
                                                     >
                                                         {nest.name}
                                                     </NavLink>

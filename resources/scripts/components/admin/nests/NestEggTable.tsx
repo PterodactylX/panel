@@ -127,7 +127,7 @@ const EggsTable = () => {
                                             <td css={tw`px-6 text-sm text-neutral-200 text-left whitespace-nowrap`}>
                                                 <NavLink
                                                     to={`/admin/nests/${params.nestId}/eggs/${egg.id}`}
-                                                    css={tw`text-primary-400 hover:text-primary-300`}
+                                                    css={tw`text-zinc-400 hover:text-zinc-300`}
                                                 >
                                                     {egg.name}
                                                 </NavLink>

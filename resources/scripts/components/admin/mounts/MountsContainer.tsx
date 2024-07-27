@@ -160,7 +160,7 @@ const MountsContainer = () => {
                                                 <td css={tw`px-6 text-sm text-neutral-200 text-left whitespace-nowrap`}>
                                                     <NavLink
                                                         to={`/admin/mounts/${mount.id}`}
-                                                        css={tw`text-primary-400 hover:text-primary-300`}
+                                                        css={tw`text-zinc-400 hover:text-zinc-300`}
                                                     >
                                                         {mount.name}
                                                     </NavLink>

@@ -53,7 +53,7 @@ export const SelectStyle: StylesConfig<T, any, any> = {
             ...base,
             height: '3rem',
             background: theme`colors.neutral.600`,
-            borderColor: !props.isFocused ? theme`colors.neutral.500` : theme`colors.primary.300`,
+            borderColor: !props.isFocused ? theme`colors.neutral.500` : theme`colors.zinc.300`,
             borderWidth: '2px',
             color: theme`colors.neutral.200`,
             cursor: 'pointer',
@@ -62,7 +62,7 @@ export const SelectStyle: StylesConfig<T, any, any> = {
                 : undefined,
 
             ':hover': {
-                borderColor: !props.isFocused ? theme`colors.neutral.400` : theme`colors.primary.300`,
+                borderColor: !props.isFocused ? theme`colors.neutral.400` : theme`colors.zinc.300`,
             },
         };
     },

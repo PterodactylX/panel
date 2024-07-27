@@ -160,7 +160,7 @@ function AllocationsTable({ nodeId, filters }: Props) {
                                                 <td css={tw`px-6 text-sm text-neutral-200 text-left whitespace-nowrap`}>
                                                     <NavLink
                                                         to={`/admin/servers/${allocation.serverId}`}
-                                                        css={tw`text-primary-400 hover:text-primary-300`}
+                                                        css={tw`text-zinc-400 hover:text-zinc-300`}
                                                     >
                                                         {allocation.relations.server.name}
                                                     </NavLink>

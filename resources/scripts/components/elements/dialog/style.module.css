@@ -31,6 +31,6 @@
     }
 
     &.info {
-        @apply bg-primary-500 text-primary-50;
+        @apply bg-zinc-500 text-zinc-50;
     }
 }

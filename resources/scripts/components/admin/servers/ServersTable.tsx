@@ -143,7 +143,7 @@ function ServersTable({ filters }: Props) {
                                             <td css={tw`px-6 text-sm text-left whitespace-nowrap`}>
                                                 <NavLink
                                                     to={`/admin/servers/${server.id}`}
-                                                    css={tw`text-primary-400 hover:text-primary-300`}
+                                                    css={tw`text-zinc-400 hover:text-zinc-300`}
                                                 >
                                                     {server.name}
                                                 </NavLink>
@@ -153,7 +153,7 @@ function ServersTable({ filters }: Props) {
                                             <td css={tw`px-6 text-sm text-left whitespace-nowrap`}>
                                                 <NavLink
                                                     to={`/admin/users/${server.relations.user?.id}`}
-                                                    css={tw`text-primary-400 hover:text-primary-300`}
+                                                    css={tw`text-zinc-400 hover:text-zinc-300`}
                                                 >
                                                     <div css={tw`text-sm text-neutral-200`}>
                                                         {server.relations.user?.email}
@@ -169,7 +169,7 @@ function ServersTable({ filters }: Props) {
                                             <td css={tw`px-6 text-sm text-left whitespace-nowrap`}>
                                                 <NavLink
                                                     to={`/admin/nodes/${server.relations.node?.id}`}
-                                                    css={tw`text-primary-400 hover:text-primary-300`}
+                                                    css={tw`text-zinc-400 hover:text-zinc-300`}
                                                 >
                                                     <div css={tw`text-sm text-neutral-200`}>
                                                         {server.relations.node?.name}

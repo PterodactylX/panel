@@ -70,7 +70,7 @@ const EulaModalFeature = () => {
                 By pressing {'"I Accept"'} below you are indicating your agreement to the&nbsp;
                 <a
                     target={'_blank'}
-                    css={tw`text-primary-300 underline transition-colors duration-150 hover:text-primary-400`}
+                    css={tw`text-zinc-300 underline transition-colors duration-150 hover:text-zinc-400`}
                     rel={'noreferrer noopener'}
                     href="https://www.minecraft.net/eula"
                 >

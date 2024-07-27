@@ -106,14 +106,14 @@ interface Props<T> {
 }
 
 const PaginationButton = styled.button<{ active?: boolean }>`
-    ${tw`relative items-center px-3 py-1 -ml-px text-sm font-normal leading-5 transition duration-150 ease-in-out border border-neutral-500 focus:z-10 focus:outline-none focus:border-primary-300 inline-flex`};
+    ${tw`relative items-center px-3 py-1 -ml-px text-sm font-normal leading-5 transition duration-150 ease-in-out border border-neutral-500 focus:z-10 focus:outline-none focus:border-zinc-300 inline-flex`};
 
     ${props =>
         props.active ? tw`bg-neutral-500 text-neutral-50` : tw`bg-neutral-600 text-neutral-200 hover:text-neutral-50`};
 `;
 
 const PaginationArrow = styled.button`
-    ${tw`relative inline-flex items-center px-1 py-1 text-sm font-medium leading-5 transition duration-150 ease-in-out border border-neutral-500 bg-neutral-600 text-neutral-400 hover:text-neutral-50 focus:z-10 focus:outline-none focus:border-primary-300`};
+    ${tw`relative inline-flex items-center px-1 py-1 text-sm font-medium leading-5 transition duration-150 ease-in-out border border-neutral-500 bg-neutral-600 text-neutral-400 hover:text-neutral-50 focus:z-10 focus:outline-none focus:border-zinc-300`};
 
     &:disabled {
         ${tw`bg-neutral-700`}
