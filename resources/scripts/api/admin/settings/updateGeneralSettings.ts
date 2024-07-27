@@ -11,7 +11,7 @@ export default (settings: Settings): Promise<void> => {
             name: settings.name,
             analytics: settings.analytics,
         })
-        .then(() => resolve())
-        .catch(reject);
+            .then(() => resolve())
+            .catch(reject);
     });
 };

@@ -1,4 +1,4 @@
-import { Form, Formik, FormikHelpers, useFormikContext } from 'formik';
+import { Form, Formik, FormikHelpers } from 'formik';
 import tw from 'twin.macro';
 
 import AdminBox from '@/components/admin/AdminBox';
@@ -15,23 +15,24 @@ export default () => {
 
     const { clearFlashes, clearAndAddHttpError } = useFlash();
 
-
     const submit = (settings: Settings, { setSubmitting }: FormikHelpers<Settings>) => {
         clearFlashes('location:create');
 
         updateGeneralSettings({
             name: settings.name,
             analytics: settings.analytics,
-        }).then(() => {
-            setSubmitting(false);
-            store.getActions().settings.setSettings({
-                ...store.getState().settings.data!,
-                name: settings.name,
+        })
+            .then(() => {
+                setSubmitting(false);
+                store.getActions().settings.setSettings({
+                    ...store.getState().settings.data!,
+                    name: settings.name,
+                });
+            })
+            .catch(error => {
+                clearAndAddHttpError({ key: 'location:create', error });
+                setSubmitting(false);
             });
-        }).catch(error => {
-            clearAndAddHttpError({ key: 'location:create', error });
-            setSubmitting(false);
-        });
     };
 
     return (
