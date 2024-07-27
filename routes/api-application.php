@@ -212,3 +212,16 @@ Route::group(['prefix' => '/users'], function () {
 
     Route::delete('/{user:id}', [Application\Users\UserController::class, 'delete']);
 });
+
+/*
+|--------------------------------------------------------------------------
+| Settings Controller Routes
+|--------------------------------------------------------------------------
+|
+| Endpoint: /api/application/settings
+|
+*/
+Route::group(['prefix' => '/settings'], function () {
+    Route::get('/general', [Application\Settings\GeneralSettingsController::class, 'index']);
+    Route::patch('/general', [Application\Settings\GeneralSettingsController::class, 'update']);
+});
