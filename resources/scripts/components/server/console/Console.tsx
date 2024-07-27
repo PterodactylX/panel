@@ -4,10 +4,9 @@ import { debounce } from 'debounce';
 import type { KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { ITerminalInitOnlyOptions, ITerminalOptions, ITheme } from 'xterm';
-import { Terminal } from 'xterm';
+import { ITerminalAddon, Terminal } from '@xterm/xterm';
 import { FitAddon } from 'xterm-addon-fit';
-import { SearchAddon } from 'xterm-addon-search';
-import { SearchBarAddon } from 'xterm-addon-search-bar';
+// import { SearchAddon } from '@xterm/addon-search';
 import { WebLinksAddon } from 'xterm-addon-web-links';
 import { theme as th } from 'twin.macro';
 
@@ -63,8 +62,8 @@ export default () => {
     const ref = useRef<HTMLDivElement>(null);
     const terminal = useMemo(() => new Terminal({ ...terminalProps, ...terminalInitOnlyProps }), []);
     const fitAddon = new FitAddon();
-    const searchAddon = new SearchAddon();
-    const searchBar = new SearchBarAddon({ searchAddon });
+    // const searchAddon = new SearchAddon();
+    // const searchBar = new SearchBarAddon({ searchAddon });
     const webLinksAddon = new WebLinksAddon();
     const scrollDownHelperAddon = new ScrollDownHelperAddon();
     const { connected, instance } = ServerContext.useStoreState(state => state.socket);
@@ -130,15 +129,16 @@ export default () => {
 
     useEffect(() => {
         if (connected && ref.current && !terminal.element) {
-            terminal.loadAddon(fitAddon);
-            terminal.loadAddon(searchAddon);
-            terminal.loadAddon(searchBar);
-            terminal.loadAddon(webLinksAddon);
-            terminal.loadAddon(scrollDownHelperAddon);
+            terminal.loadAddon(fitAddon as ITerminalAddon);
+            // TODO: fix searchAddon
+            // terminal.loadAddon(searchAddon);
+            // terminal.loadAddon(searchBar);
+            terminal.loadAddon(webLinksAddon as ITerminalAddon);
+            terminal.loadAddon(scrollDownHelperAddon as ITerminalAddon);
 
             terminal.open(ref.current);
             fitAddon.fit();
-            searchBar.addNewStyle(zIndex);
+            // searchBar.addNewStyle(zIndex);
 
             // Add support for capturing keys
             terminal.attachCustomKeyEventHandler((e: KeyboardEvent) => {
@@ -146,11 +146,11 @@ export default () => {
                     document.execCommand('copy');
                     return false;
                 } else if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
-                    e.preventDefault();
-                    searchBar.show();
+                    // e.preventDefault();
+                    // searchBar.show();
                     return false;
                 } else if (e.key === 'Escape') {
-                    searchBar.hidden();
+                    // searchBar.hidden();
                 }
                 return true;
             });
