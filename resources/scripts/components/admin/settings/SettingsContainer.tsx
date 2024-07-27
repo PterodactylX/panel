@@ -23,19 +23,19 @@ export default () => {
             <FlashMessageRender byKey={'admin:settings'} css={tw`mb-4`} />
 
             <SubNavigation>
-                <SubNavigationLink to="/admin/settings" name="General">
+                <SubNavigationLink to="/admin/settings" name="General" viewTransition>
                     <ChipIcon />
                 </SubNavigationLink>
-                <SubNavigationLink to="/admin/settings/mail" name="Mail">
+                <SubNavigationLink to="/admin/settings/mail" name="Mail" viewTransition>
                     <MailIcon />
                 </SubNavigationLink>
-                <SubNavigationLink to="/admin/settings/security" name="Security">
+                <SubNavigationLink to="/admin/settings/security" name="Security" viewTransition>
                     <ShieldCheckIcon />
                 </SubNavigationLink>
-                <SubNavigationLink to="/admin/settings/features" name="Features">
+                <SubNavigationLink to="/admin/settings/features" name="Features" viewTransition>
                     <AdjustmentsIcon />
                 </SubNavigationLink>
-                <SubNavigationLink to="/admin/settings/advanced" name="Advanced">
+                <SubNavigationLink to="/admin/settings/advanced" name="Advanced" viewTransition>
                     <CodeIcon />
                 </SubNavigationLink>
             </SubNavigation>
