@@ -1,5 +1,6 @@
 import type { ComponentType, ReactNode } from 'react';
-import { NavLink } from 'react-router-dom';
+import { flushSync } from 'react-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import tw, { styled } from 'twin.macro';
 
 export const SubNavigation = styled.div`
@@ -22,6 +23,7 @@ export const SubNavigation = styled.div`
 interface Props {
     to: string;
     name: string;
+    viewTransition?: boolean;
 }
 
 interface PropsWithIcon extends Props {
@@ -34,9 +36,42 @@ interface PropsWithoutIcon extends Props {
     children: ReactNode;
 }
 
-export const SubNavigationLink = ({ to, name, icon: IconComponent, children }: PropsWithIcon | PropsWithoutIcon) => (
-    <NavLink to={to} end>
-        {IconComponent ? <IconComponent /> : children}
-        {name}
-    </NavLink>
-);
+export const SubNavigationLink = ({
+    to,
+    name,
+    icon: IconComponent,
+    children,
+    viewTransition,
+}: PropsWithIcon | PropsWithoutIcon) => {
+    const navigate = useNavigate();
+
+    if (!viewTransition) {
+        return (
+            <NavLink to={to} end>
+                {IconComponent ? <IconComponent /> : children}
+                {name}
+            </NavLink>
+        );
+    }
+
+    return (
+        <a
+            onClick={e => {
+                e.preventDefault();
+
+                if (document.startViewTransition) {
+                    document.startViewTransition(() => {
+                        flushSync(() => {
+                            navigate(to);
+                        });
+                    });
+                } else {
+                    navigate(to);
+                }
+            }}
+        >
+            {IconComponent ? <IconComponent /> : children}
+            {name}
+        </a>
+    );
+};
