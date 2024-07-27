@@ -61,7 +61,6 @@ function App() {
 
     return (
         <>
-            {/* @ts-expect-error go away */}
             <GlobalStylesheet />
 
             <StoreProvider store={store}>
