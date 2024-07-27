@@ -1,22 +1,26 @@
 import { Form, Formik, FormikHelpers } from 'formik';
-import tw from 'twin.macro';
-
-import AdminBox from '@/components/admin/AdminBox';
-import Field, { FieldRow } from '@/components/elements/Field';
-import Button from '@/components/elements/Button';
+import { Button } from '@/components/ui/button';
 import updateGeneralSettings, { Settings } from '@/api/admin/settings/updateGeneralSettings';
 import { ApplicationStore } from '@/state';
 import { useStoreState } from 'easy-peasy';
 import useFlash from '@/plugins/useFlash';
 import { store } from '@/state';
+import Error, { LaravelError } from '@/components/elements/error/Error';
+import { useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Loader2 } from 'lucide-react';
 
 export default () => {
     const settings = useStoreState((state: ApplicationStore) => state.settings.data);
 
     const { clearFlashes, clearAndAddHttpError } = useFlash();
+    const [error, setError] = useState<LaravelError | undefined>(undefined);
 
     const submit = (settings: Settings, { setSubmitting }: FormikHelpers<Settings>) => {
         clearFlashes('location:create');
+        setError(undefined);
 
         updateGeneralSettings({
             name: settings.name,
@@ -32,6 +36,7 @@ export default () => {
             .catch(error => {
                 clearAndAddHttpError({ key: 'location:create', error });
                 setSubmitting(false);
+                setError(error.response?.data);
             });
     };
 
@@ -40,22 +45,43 @@ export default () => {
             onSubmit={submit}
             initialValues={{
                 name: settings?.name || '',
-                // todo: add analytics to settings
+                // TODO: add analytics to settings
                 analytics: '',
             }}
         >
-            {({ isSubmitting, isValid }) => (
+            {({ isSubmitting, isValid, values }) => (
                 <Form>
-                    <div css={tw`grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6`}>
-                        <AdminBox title="Branding" isLoading={isSubmitting}>
-                            <FieldRow>
-                                <Field id={'name'} name={'name'} type={'text'} label={'App Name'} description={''} />
-                            </FieldRow>
-                            <Button type="submit" size="small" css={tw`ml-auto`} disabled={isSubmitting || !isValid}>
+                    <Card className="lg:w-[500px] m-full">
+                        <CardHeader>
+                            <CardTitle>Branding</CardTitle>
+                            <CardDescription>
+                                Change the title of the panel in the navigation menus and the page title
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <Error laravelError={error} />
+
+                            <Label htmlFor="name">Panel Name</Label>
+                            <Input
+                                type="text"
+                                name="name"
+                                className="mt-2"
+                                id="name"
+                                placeholder="Panel name"
+                                defaultValue={values.name}
+                                disabled={isSubmitting}
+                                onChange={e => {
+                                    values.name = e.target.value;
+                                }}
+                            />
+                        </CardContent>
+                        <CardFooter>
+                            <Button type="submit" disabled={isSubmitting || !isValid}>
+                                {(isSubmitting || !isValid) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                 Save Changes
                             </Button>
-                        </AdminBox>
-                    </div>
+                        </CardFooter>
+                    </Card>
                 </Form>
             )}
         </Formik>
