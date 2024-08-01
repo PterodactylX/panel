@@ -227,4 +227,6 @@ Route::group(['prefix' => '/settings'], function () {
     Route::get('/mail', [Application\Settings\MailSettingsController::class, 'index']);
     Route::patch('/mail', [Application\Settings\MailSettingsController::class, 'update']);
     Route::post('/mail/test', [Application\Settings\MailSettingsController::class, 'test']);
+    Route::get('/2fa', [Application\Settings\TwoFactorAuthenticationController::class, 'index']);
+    Route::patch('/2fa', [Application\Settings\TwoFactorAuthenticationController::class, 'update']);
 });
