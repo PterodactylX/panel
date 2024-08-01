@@ -104,7 +104,7 @@ const MailSettingsForm = ({ settings }: { settings: MailSettings }) => {
                                         <SelectContent>
                                             <SelectGroup>
                                                 <SelectLabel>SMTP Encryption</SelectLabel>
-                                                <SelectItem value="tls">Transport Layer Security (TLS</SelectItem>
+                                                <SelectItem value="tls">Transport Layer Security (TLS)</SelectItem>
                                                 <SelectItem value="ssl">Secure Sockets Layer (SSL)</SelectItem>
                                                 <SelectItem value="none">None (Not recommended)</SelectItem>
                                             </SelectGroup>
