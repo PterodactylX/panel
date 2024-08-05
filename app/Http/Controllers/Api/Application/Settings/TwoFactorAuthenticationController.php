@@ -17,8 +17,14 @@ class TwoFactorAuthenticationController extends ApplicationApiController
 
     public function index(): JsonResponse
     {
+        match ((int) config('pterodactyl.auth.2fa_required', 0)) {
+            0 => $mode = 'disable',
+            1 => $mode = 'admin',
+            2 => $mode = 'all',
+        };
+
         return response()->json([
-            'mode' => config('settings::pterodactyl:auth:2fa_required', 'disable'),
+            'mode' => $mode,
         ]);
     }
 
@@ -30,6 +36,12 @@ class TwoFactorAuthenticationController extends ApplicationApiController
     {
         $validated = $request->validated();
 
-        $this->settingsRepository->set('settings::pterodactyl:auth:2fa_required', $validated['mode']);
+        match ($validated['mode']) {
+            'disable' => $mode = 0,
+            'admin' => $mode = 1,
+            'all' => $mode = 2,
+        };
+
+        $this->settingsRepository->set('settings::pterodactyl:auth:2fa_required', $mode);
     }
 }
