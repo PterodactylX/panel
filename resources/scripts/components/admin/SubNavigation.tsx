@@ -1,6 +1,5 @@
 import startTransition from '@/lib/transition';
 import { useEffect, useState, type ComponentType, type ReactNode } from 'react';
-import { flushSync } from 'react-dom';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import tw, { styled } from 'twin.macro';
 

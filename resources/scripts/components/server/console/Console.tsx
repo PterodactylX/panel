@@ -73,10 +73,10 @@ export default () => {
     const [history, setHistory] = usePersistedState<string[]>(`${serverId}:command_history`, []);
     const [historyIndex, setHistoryIndex] = useState(-1);
     // SearchBarAddon has hardcoded z-index: 999 :(
-    const zIndex = `
-    .xterm-search-bar__addon {
-        z-index: 10;
-    }`;
+    // const zIndex = `
+    // .xterm-search-bar__addon {
+    //     z-index: 10;
+    // }`;
 
     const handleConsoleOutput = (line: string, prelude = false) =>
         terminal.writeln((prelude ? TERMINAL_PRELUDE : '') + line.replace(/(?:\r\n|\r|\n)$/im, '') + '\u001b[0m');
