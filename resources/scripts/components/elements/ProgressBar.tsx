@@ -67,7 +67,7 @@ function ProgressBar() {
                 unmount
             >
                 <div
-                    className="h-full bg-cyan-400 shadow-[0_-2px_10px_2px] shadow-[#3CE7E1] transition-all duration-[250ms] ease-in-out"
+                    className="h-full bg-primary shadow-[0_-2px_10px_2px] shadow-primary transition-all duration-[250ms] ease-in-out"
                     style={{ width: progress === undefined ? '100%' : `${progress}%` }}
                 />
             </Transition>
