@@ -17,9 +17,9 @@ import {
 import get2faSettings, { TwoFactorSettings } from '@/api/admin/settings/get2faSettings';
 import update2faSettings from '@/api/admin/settings/update2faSettings';
 import { Skeleton } from '@/components/ui/skeleton';
-import { flushSync } from 'react-dom';
 import { useStoreState } from 'easy-peasy';
 import { useNavigate } from 'react-router-dom';
+import startTransition from '@/lib/transition';
 
 export default () => {
     const [error, setError] = useState<LaravelError | undefined>(undefined);
@@ -45,15 +45,7 @@ export default () => {
 
     useEffect(() => {
         get2faSettings().then(data => {
-            if (document.startViewTransition) {
-                document.startViewTransition(() => {
-                    flushSync(() => {
-                        setMode(data.mode);
-                    });
-                });
-            } else {
-                setMode(data.mode);
-            }
+            startTransition(() => setMode(data.mode));
         });
     }, []);
 
