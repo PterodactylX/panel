@@ -6,8 +6,7 @@ const Wrapper = styled.div`
     ${tw`w-full flex flex-col px-4`};
 
     & > a {
-        ${tw`h-10 w-full flex flex-row items-center text-neutral-300 cursor-pointer select-none px-4 my-1`};
-        ${tw`hover:text-neutral-50`};
+        ${tw`h-10 w-full flex flex-row items-center text-primary cursor-pointer select-none px-4 my-1`};
         ${tw`transition-colors duration-150 ease-in rounded-sm`};
 
         & > svg {
@@ -18,6 +17,7 @@ const Wrapper = styled.div`
             ${tw`font-header font-medium text-lg whitespace-nowrap leading-none ml-3`};
         }
 
+        &:hover,
         &:active,
         &.active {
             ${tw`text-primary-foreground bg-primary`};
@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 `;
 
 const Section = styled.div`
-    ${tw`h-[18px] font-header font-medium text-xs text-neutral-300 whitespace-nowrap uppercase ml-4 mb-1 select-none`};
+    ${tw`h-[18px] font-header font-medium text-xs text-primary whitespace-nowrap uppercase ml-4 mb-1 select-none`};
 
     &:not(:first-of-type) {
         ${tw`mt-4`};
@@ -43,7 +43,7 @@ const Sidebar = styled.div`
     ${tw`w-[17.5rem]`};
 
     & > a {
-        ${tw`h-10 w-full flex flex-row items-center text-neutral-300 cursor-pointer select-none px-8`};
+        ${tw`h-10 w-full flex flex-row items-center text-primary cursor-pointer select-none px-8`};
         ${tw`hover:text-neutral-50`};
 
         & > svg {
