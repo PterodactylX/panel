@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
     body {
-        ${tw`font-sans bg-[#09090b] text-neutral-200`};
+        ${tw`font-sans dark:bg-[#09090b] text-neutral-200`};
         letter-spacing: 0.015em;
     }
 
