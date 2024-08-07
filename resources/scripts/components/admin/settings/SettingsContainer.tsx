@@ -8,17 +8,16 @@ import FlashMessageRender from '@/components/FlashMessageRender';
 import { SubNavigation, SubNavigationLink } from '@/components/admin/SubNavigation';
 import GeneralSettings from '@/components/admin/settings/GeneralSettings';
 import SecuritySettingsContainer from '@/components/admin/settings/security/SecuritySettingsContainer';
+import Header from '@/components/elements/header';
 
 export default () => {
     return (
         <AdminContentBlock title={'Settings'}>
             <div css={tw`w-full flex flex-row items-center mb-8`}>
-                <div css={tw`flex flex-col flex-shrink`} style={{ minWidth: '0' }}>
-                    <h2 css={tw`text-2xl text-neutral-50 font-header font-medium`}>Settings</h2>
-                    <p css={tw`text-base text-neutral-400 whitespace-nowrap overflow-ellipsis overflow-hidden`}>
-                        Configure and manage settings for Pterodactyl.
-                    </p>
-                </div>
+                <Header>
+                    <Header.Title>Settings</Header.Title>
+                    <Header.SubTitle>Configure and manage settings for Pterodactyl.</Header.SubTitle>
+                </Header>
             </div>
 
             <FlashMessageRender byKey={'admin:settings'} css={tw`mb-4`} />
