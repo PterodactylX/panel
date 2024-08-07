@@ -19,7 +19,7 @@ import { useEffect, useState } from 'react';
 import Error, { LaravelError } from '@/components/elements/error/Error';
 import { Skeleton } from '@/components/ui/skeleton';
 import getMailSettings from '@/api/admin/settings/getMailSettings';
-import { flushSync } from 'react-dom';
+import startTransition from '@/lib/transition';
 
 const MailSettingsForm = ({ settings }: { settings: MailSettings }) => {
     const [error, setError] = useState<LaravelError | undefined>(undefined);
@@ -194,15 +194,7 @@ export default () => {
         const fetchSettings = async () => {
             try {
                 const fetchedSettings = await getMailSettings();
-                if (document.startViewTransition) {
-                    document.startViewTransition(() => {
-                        flushSync(() => {
-                            setSettings(fetchedSettings);
-                        });
-                    });
-                } else {
-                    setSettings(fetchedSettings); // Fallback if startViewTransition is not available
-                }
+                startTransition(() => setSettings(fetchedSettings));
             } catch (error) {
                 console.error('Error fetching mail settings:', error);
             }
