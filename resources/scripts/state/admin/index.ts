@@ -18,6 +18,7 @@ import type { AdminServerStore } from '@/state/admin/servers';
 import servers from '@/state/admin/servers';
 import type { AdminUserStore } from '@/state/admin/users';
 import users from '@/state/admin/users';
+import adminDashboard, { AdminDashboard } from './adminDashboard';
 
 interface AdminStore {
     allocations: AdminAllocationStore;
@@ -29,6 +30,7 @@ interface AdminStore {
     roles: AdminRoleStore;
     servers: AdminServerStore;
     users: AdminUserStore;
+    adminDashboard: AdminDashboard;
 }
 
 export const AdminContext = createContextStore<AdminStore>({
@@ -41,4 +43,5 @@ export const AdminContext = createContextStore<AdminStore>({
     roles,
     servers,
     users,
+    adminDashboard,
 });
