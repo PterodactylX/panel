@@ -24,6 +24,19 @@ const ServerConsoleContainer = lazy(() => import('@/components/server/console/Se
 const FileEditContainer = lazy(() => import('@/components/server/files/FileEditContainer'));
 const ScheduleEditContainer = lazy(() => import('@/components/server/schedules/ScheduleEditContainer'));
 
+import {
+    CogIcon,
+    DatabaseIcon,
+    FolderIcon,
+    GlobeIcon,
+    OfficeBuildingIcon,
+    ServerIcon,
+    TerminalIcon,
+    UserGroupIcon,
+    UsersIcon,
+    ViewGridIcon,
+} from '@heroicons/react/outline';
+
 interface RouteDefinition {
     /**
      * Route is the path that will be matched against, this field supports wildcards.
@@ -38,6 +51,7 @@ interface RouteDefinition {
     // but no navigation link is displayed in the sub-navigation menu.
     name: string | undefined;
     component: ComponentType;
+    icon?: ComponentType;
     end?: boolean;
 }
 
@@ -50,6 +64,8 @@ interface Routes {
     account: RouteDefinition[];
     // All the routes available under "/server/:id"
     server: ServerRouteDefinition[];
+    // All the routes available under "/admin"
+    admin: RouteDefinition[];
 }
 
 export default {
@@ -163,6 +179,169 @@ export default {
             permission: 'activity.*',
             name: 'Activity',
             component: ServerActivityLogContainer,
+        },
+    ],
+    admin: [
+        {
+            route: '',
+            path: '',
+            name: 'Admin',
+            component: lazy(() => import('@/components/admin/overview/OverviewContainer')),
+            end: true,
+            icon: OfficeBuildingIcon,
+        },
+        {
+            route: 'settings',
+            path: 'settings/*',
+            name: 'Settings',
+            component: lazy(() => import('@/components/admin/settings/SettingsContainer')),
+            icon: CogIcon,
+        },
+        {
+            route: 'databases',
+            path: 'databases',
+            name: 'Databases',
+            component: lazy(() => import('@/components/admin/databases/DatabasesContainer')),
+            icon: DatabaseIcon,
+        },
+        {
+            route: 'databases/new',
+            path: 'databases/new',
+            name: 'NewDatabase',
+            component: lazy(() => import('@/components/admin/databases/NewDatabaseContainer')),
+        },
+        {
+            route: 'databases/:id',
+            path: 'databases/:id',
+            name: 'DatabaseEdit',
+            component: lazy(() => import('@/components/admin/databases/DatabaseEditContainer')),
+        },
+        {
+            route: 'locations',
+            path: 'locations',
+            name: 'Locations',
+            component: lazy(() => import('@/components/admin/locations/LocationsContainer')),
+            icon: GlobeIcon,
+        },
+        {
+            route: 'locations/:id',
+            path: 'locations/:id',
+            name: 'LocationEdit',
+            component: lazy(() => import('@/components/admin/locations/LocationEditContainer')),
+        },
+        {
+            route: 'nodes',
+            path: 'nodes',
+            name: 'Nodes',
+            component: lazy(() => import('@/components/admin/nodes/NodesContainer')),
+            icon: ServerIcon,
+        },
+        {
+            route: 'nodes/new',
+            path: 'nodes/new',
+            name: 'NewNode',
+            component: lazy(() => import('@/components/admin/nodes/NewNodeContainer')),
+        },
+        {
+            route: 'nodes/:id/*',
+            path: 'nodes/:id/*',
+            name: 'NodeRouter',
+            component: lazy(() => import('@/components/admin/nodes/NodeRouter')),
+        },
+        {
+            route: 'servers',
+            path: 'servers',
+            name: 'Servers',
+            component: lazy(() => import('@/components/admin/servers/ServersContainer')),
+            icon: TerminalIcon,
+        },
+        {
+            route: 'servers/new',
+            path: 'servers/new',
+            name: 'NewServer',
+            component: lazy(() => import('@/components/admin/servers/NewServerContainer')),
+        },
+        {
+            route: 'servers/:id/*',
+            path: 'servers/:id/*',
+            name: 'ServerRouter',
+            component: lazy(() => import('@/components/admin/servers/ServerRouter')),
+        },
+        {
+            route: 'users',
+            path: 'users',
+            name: 'Users',
+            component: lazy(() => import('@/components/admin/users/UsersContainer')),
+            icon: UsersIcon,
+        },
+        {
+            route: 'users/new',
+            path: 'users/new',
+            name: 'NewUser',
+            component: lazy(() => import('@/components/admin/users/NewUserContainer')),
+        },
+        {
+            route: 'users/:id/*',
+            path: 'users/:id/*',
+            name: 'UserRouter',
+            component: lazy(() => import('@/components/admin/users/UserRouter')),
+        },
+        {
+            route: 'roles',
+            path: 'roles',
+            name: 'Roles',
+            component: lazy(() => import('@/components/admin/roles/RolesContainer')),
+            icon: UserGroupIcon,
+        },
+        {
+            route: 'roles/:id',
+            path: 'roles/:id',
+            name: 'RoleEdit',
+            component: lazy(() => import('@/components/admin/roles/RoleEditContainer')),
+        },
+        {
+            route: 'nests',
+            path: 'nests',
+            name: 'Nests',
+            component: lazy(() => import('@/components/admin/nests/NestsContainer')),
+            icon: ViewGridIcon,
+        },
+        {
+            route: 'nests/:nestId',
+            path: 'nests/:nestId',
+            name: 'NestEdit',
+            component: lazy(() => import('@/components/admin/nests/NestEditContainer')),
+        },
+        {
+            route: 'nests/:nestId/new',
+            path: 'nests/:nestId/new',
+            name: 'NewEgg',
+            component: lazy(() => import('@/components/admin/nests/NewEggContainer')),
+        },
+        {
+            route: 'nests/:nestId/eggs/:id/*',
+            path: 'nests/:nestId/eggs/:id/*',
+            name: 'EggRouter',
+            component: lazy(() => import('@/components/admin/nests/eggs/EggRouter')),
+        },
+        {
+            route: 'mounts',
+            path: 'mounts',
+            name: 'Mounts',
+            component: lazy(() => import('@/components/admin/mounts/MountsContainer')),
+            icon: FolderIcon,
+        },
+        {
+            route: 'mounts/new',
+            path: 'mounts/new',
+            name: 'NewMount',
+            component: lazy(() => import('@/components/admin/mounts/NewMountContainer')),
+        },
+        {
+            route: 'mounts/:id',
+            path: 'mounts/:id',
+            name: 'MountEdit',
+            component: lazy(() => import('@/components/admin/mounts/MountEditContainer')),
         },
     ],
 } as Routes;
